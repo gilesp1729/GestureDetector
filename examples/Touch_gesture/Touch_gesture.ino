@@ -1,7 +1,8 @@
 #include "Arduino_GigaDisplay_GFX.h"
 #include "GestureDetector.h"
 
-// Example program for Giga gesture library and Giga GFX.
+// Example program for Giga gesture detector library and Giga GFX.
+
 // Uses startBuffering and endBuffering calls to batch up
 // screen updates to prevent flicker and draw more smoothly.
 // These can be found in the gilesp1729 fork of
@@ -19,11 +20,13 @@ int box_x, box_y, box_w, box_h;
 // 4 corners of rect (which may be rotated)
 Point cp[4];
 
+// Show a message on the screen.
 void Log(char *str, int x = 0, int y = 0)
 {
   tft.fillRect(x, y, 50*strlen(str), 50, 0);
   tft.setCursor(x, y);
   tft.print(str);
+  Serial.println(str);
 }
 
 // Draw a rectangle made up from 4 lines. (done this way so rect can be rotated)
@@ -213,7 +216,7 @@ void setup()
   detector.onPinch(0, 0, 0, 0, pinch_cb, 6, NULL, false, CO_NONE, 5);
   //detector.onPinch(0, 0, 0, 0, rotatable_pinch_cb, 6, NULL, true, CO_NONE, 5);
 
-  // Mark out the top left on the screen when testing rotations
+  // Mark out the top left on the screen when testing rotations. 
   tft.setTextSize(4);
   Log("Top");
 }

@@ -117,6 +117,7 @@ void GestureDetector::call_cb(void)
     if (track.active_event < 0)
       return;   // nothing to do here
 
+#if 0
     Serial.print("Tap ");
     if (released)
       Serial.print("(Rel) ");
@@ -125,6 +126,7 @@ void GestureDetector::call_cb(void)
     Serial.print(track.cont[0].init_x + track.cont[0].dx);
     Serial.print(" ");
     Serial.println(track.cont[0].init_y + track.cont[0].dy);
+#endif
 
     i = track.active_event;
 
@@ -161,6 +163,7 @@ void GestureDetector::call_cb(void)
     if (track.active_event < 0)
       return;   // nothing to do here
 
+#if 0
     if (ev == EV_DRAG)
       Serial.print("Drag ");
     else
@@ -172,6 +175,7 @@ void GestureDetector::call_cb(void)
     Serial.print(track.cont[0].init_x + track.cont[0].dx);
     Serial.print(" ");
     Serial.println(track.cont[0].init_y + track.cont[0].dy);
+#endif
 
     i = track.active_event;
     ASSERT(events[i].type == EV_DRAG || events[i].type == EV_SWIPE);
@@ -227,6 +231,7 @@ void GestureDetector::call_cb(void)
     if (track.active_event < 0)
       return;   // nothing to do here
 
+#if 0
     Serial.print("Pinch ");
     if (released)
       Serial.print("(Rel) ");
@@ -239,6 +244,7 @@ void GestureDetector::call_cb(void)
     Serial.print(track.cont[1].init_x + track.cont[1].dx);
     Serial.print(" ");
     Serial.println(track.cont[1].init_y + track.cont[1].dy);
+#endif
 
     i = track.active_event;
     ASSERT(events[i].type == EV_PINCH);
@@ -259,7 +265,7 @@ void GestureDetector::call_cb(void)
       // Measure the (single) scale factor.
       float len0 = length(init_x0, init_x1, init_y0, init_y1);
       float len1 = length(x0, x1, y0, y1);
-	    float scale = len1 / len0;
+      float scale = len1 / len0;
 
       // Measure the rotation by comparing the lines between the endpoints,
       // giving the cos and sin of the rotation angle.
@@ -278,7 +284,7 @@ void GestureDetector::call_cb(void)
         Serial.println(sina);
 #endif
 
-  	  // Calculate the translation components
+      // Calculate the translation components
       if (scale < MIN_SCALE)
         scale = MIN_SCALE;
       sx = cosa * scale;
@@ -291,7 +297,7 @@ void GestureDetector::call_cb(void)
       Serial.print(dx);
       Serial.print(" ");
       Serial.println(dy);
-#endif      
+#endif
     }
     else
     {
@@ -493,19 +499,19 @@ void GestureDetector::poll()
 }
 
 // Register callbacks for the various kinds of gestures. The various flavours of this call,
-// along with theri default arguments, are set up in the header file.
+// along with their default arguments, are set up in the header file.
 void GestureDetector::fill_event
 (
-  EventType ev, 
-  Point *rc, 
-  int nPts, 
-  TapCB tapCB, 
-  DragCB dragCB, 
-  PinchCB pinchCB, 
-  int indx, 
+  EventType ev,
+  Point *rc,
+  int nPts,
+  TapCB tapCB,
+  DragCB dragCB,
+  PinchCB pinchCB,
+  int indx,
   void *param,
-  bool rotatable, 
-  Constraint constraint, 
+  bool rotatable,
+  Constraint constraint,
   int angle_tol
 )
 {

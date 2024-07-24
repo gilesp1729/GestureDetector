@@ -92,8 +92,9 @@ private:
 // Callback functions for various events. They are called with:
 // type       The event being called back on. When released, the call is made
 //            with its type OR'd with EV_RELEASED.
-// indx       A unique index passed to the onXxx functions below. Reusing an index
-//            will overwrite an existing callback registration.
+// indx       A unique priority passed to the onXxx functions below. Reusing an index
+//            will overwrite an existing callback registration. Higher indices have
+//            higher priorities.
 // param      Any user parameter passed in from the onXxx function
 // x, y       The initial tap position. The last seen position is
 //            always (x + dx, y + dy)
@@ -129,7 +130,7 @@ class GestureDetector : public Arduino_GigaDisplayTouch
     // xywh         Rectangular region to pick up taps in
     // rc/npts      Array of Points and its size
     // tapCB        Callback function
-    // indx         unique ID to pass to callback. Used as index to events array
+    // indx         Priority index to pass to callback. Used as index to events array
     //              and setting the priority for overlapping events.
     //              Allows overwrite/update of registration, e.g. if region changes.
     //              Higher indices have higher priority.
