@@ -19,8 +19,7 @@ The example program draws a rectangle on the screen and responds to:
 - pinching of two kinds on the box
 
 Dependencies:
-- Giga GFX library
-- Giga touch library
+- Arduino Giga touch library
 
 The gilesp1729 fork of the Giga GFX library has two new calls that stop the display flickering
 and improve appearance of smooth drags and pinches. See the example code forhow to comment these
