@@ -196,6 +196,9 @@ class GestureDetector : public Arduino_GigaDisplayTouch
     // Cancel an event at the given index.
     void cancelEvent(int indx) { events[indx].type = EV_NONE; }
 
+    // Ask if there is an event at the given index
+    bool isEventRegistered(int indx) { return events[indx].type != EV_NONE; }
+
     // Set the screen rotation. Use with GFX::setRotation to keep coordinates in step.
     void setRotation(int rot) { rotation = rot; }
 
