@@ -157,11 +157,11 @@ class GestureDetector : public Arduino_GigaDisplayTouch
     //              as a multiple, e.g. setting to 10 means:
     //              that dx/dy > 10 --> dy = 0 (horizontal)
     //              and dy/dx > 10 --> dx = 0 (vertical)
-    void onDrag(Point *rc, int nPts, DragCB dragCB, int indx, void *param = NULL, Constraint constraint = CO_NONE, int angle_tol = 5)
+    void onDrag(Point *rc, int nPts, DragCB dragCB, int indx, void *param = NULL, Constraint constraint = CO_NONE, int angle_tol = 3)
     {
       fill_event(EV_DRAG, rc, nPts, NULL, dragCB, NULL, indx, param, false, constraint, angle_tol);
     }
-    void onDrag(int x, int y, int w, int h, DragCB dragCB, int indx, void *param = NULL, Constraint constraint = CO_NONE, int angle_tol = 5)
+    void onDrag(int x, int y, int w, int h, DragCB dragCB, int indx, void *param = NULL, Constraint constraint = CO_NONE, int angle_tol = 3)
     {
       int nPts;
       Point rc[4];
@@ -181,11 +181,11 @@ class GestureDetector : public Arduino_GigaDisplayTouch
       fill_event(EV_SWIPE, rc, nPts, NULL, dragCB, NULL, indx, param, false, constraint, angle_tol);
     }
 
-    void onPinch(Point *rc, int nPts, PinchCB pinchCB, int indx, void *param = NULL, bool rotatable = false, Constraint constraint = CO_NONE, int angle_tol = 5)
+    void onPinch(Point *rc, int nPts, PinchCB pinchCB, int indx, void *param = NULL, bool rotatable = false, Constraint constraint = CO_NONE, int angle_tol = 3)
     {
       fill_event(EV_PINCH, rc, nPts, NULL, NULL, pinchCB, indx, param, rotatable, constraint, angle_tol);
     }
-    void onPinch(int x, int y, int w, int h, PinchCB pinchCB, int indx, void *param = NULL, bool rotatable = false, Constraint constraint = CO_NONE, int angle_tol = 5)
+    void onPinch(int x, int y, int w, int h, PinchCB pinchCB, int indx, void *param = NULL, bool rotatable = false, Constraint constraint = CO_NONE, int angle_tol = 3)
     {
       int nPts;
       Point rc[4];
